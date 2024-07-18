@@ -119,7 +119,7 @@ class Contract:
 
     def __init__(
         self,
-        pre: Optional[List[str]]  = None,
+        pre: Optional[List[str]] = None,
         post: Optional[List[str]] = None,
         *,
         check_type: bool = True,
@@ -278,34 +278,3 @@ class Contract:
                 f"""    assert isinstance({name}, {annotation_as_str}), 'Error on rule: "{name} should be of type {annotation_as_str}"'"""
             )
         return "\n".join(function_lines)
-
-
-class FunctionContract:
-    def __init__(self):
-        pass
-
-    def __call__(self, *args, **kwargs):
-        def decorator(func: Callable):
-
-            def wrapper(*args, **kwargs):
-                pass
-
-            return wrapper
-        return decorator
-
-@FunctionContract()
-def validate_a(a: int):
-    assert a > 10, "a should be greater than 10"
-
-
-@FunctionContract()
-def validate_b(b: int):
-    assert b > 10, "a should be greater than 10"
-
-
-@Validation(b="variable_a")
-def toto(a: str, b:str):
-
-    return 1
-
-
